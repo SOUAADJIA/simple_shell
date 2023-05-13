@@ -12,14 +12,22 @@ int main(int argc, char **argv)
     char *prompt = "Sshell $ ";
     char *lineptr;
     size_t n = 0;
+    ssize_t num_read;
 
     (void)argc;
     (void)argv;
 
-    printf("%s", prompt);
-    getline(&lineptr, &n, stdin);
+    while (1)
+    {
+        printf("%s", prompt);
+        num_read = getline(&lineptr, &n, stdin);
+        if (num_read == -1)
+            return (-1);
 
-    free(lineptr);
+        printf("%lu, %s\n", num_read, lineptr); /***/
+        
+        free(lineptr);
+    }
 
     return (0);
 }
