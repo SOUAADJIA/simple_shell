@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 		lineptr[num_read - 1] = '\0'; /* remove the trailing newline character */
 		action = execve(lineptr, argv, NULL);
 		if (action == -1)
-			printf("%s: %s: command not found\n", argv[0], lineptr); 
+			printf("%s: %ld: %s: command not found\n", argv[0], num_read, lineptr); 
 		free(lineptr);
 		lineptr = NULL;
 	}
