@@ -15,7 +15,6 @@ int main(int argc, char **argv)
     ssize_t num_read;
 
     (void)argc;
-    (void)argv;
 
     while (1)
     {
@@ -24,8 +23,9 @@ int main(int argc, char **argv)
         if (num_read == -1)
             return (-1);
 
-        printf("%lu, %s\n", num_read, lineptr); /***/
-        
+        printf("%s\n", lineptr); /***/
+        exec_fun(argv);
+
         free(lineptr);
     }
 
