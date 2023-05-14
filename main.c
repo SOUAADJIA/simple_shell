@@ -9,42 +9,30 @@
 
 int main(int argc, char **argv)
 {
-    char *prompt = "Sshell $ ";
-    char *lineptr = NULL;
-    char *envp[] = {"/usr/bin", NULL};
-    size_t n = 0;
-    ssize_t num_read;
-<<<<<<< HEAD
+	char *prompt = "Sshell $ ";
+	char *lineptr = NULL;
+	size_t n = 0;
+	ssize_t num_read;
+	int action;
+	(void)argc;
 
-    (void)argc;
-
-=======
-    int action;
-    
->>>>>>> be014123953042493a71daae5988a31787c3bd7b
-    while (1)
-    {
-        printf("%s", prompt);
-        num_read = getline(&lineptr, &n, stdin);
-        if (num_read == -1)
-        {
-            printf("\n");
-            return (-1);
-<<<<<<< HEAD
-
-        printf("%s\n", lineptr); /***/
-        exec_fun(argv);
-
-=======
-        }
-        action = execve(lineptr, argv, envp);
-        if (action == -1)
-           printf("%s: %d: %s: not found\n", argv[0], argc, lineptr); /***/
-        
->>>>>>> be014123953042493a71daae5988a31787c3bd7b
-        free(lineptr);
-        lineptr = NULL;
-    }
-
-    return (0);
+	while (1)
+	{
+		printf("%s", prompt);
+		num_read = getline(&lineptr, &n, stdin);
+		if (num_read == -1)
+		{
+			printf("\n");
+			free(lineptr);
+			return (0);
+		}
+		lineptr[num_read - 1] = '\0'; /* remove the trailing newline character */
+		action = execve(lineptr, argv, NULL);
+		if (action == -1)
+			printf("%s: %s: command not found\n", argv[0], lineptr); 
+		free(lineptr);
+		lineptr = NULL;
+	}
+	return (0);
 }
+
