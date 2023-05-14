@@ -10,23 +10,27 @@
 int main(int argc, char **argv)
 {
     char *prompt = "Sshell $ ";
-    char *lineptr;
+    char *lineptr = NULL;
+    char *envp[] = {"/usr/bin", NULL};
     size_t n = 0;
     ssize_t num_read;
-
-    (void)argc;
-    (void)argv;
-
+    int action;
+    
     while (1)
     {
         printf("%s", prompt);
         num_read = getline(&lineptr, &n, stdin);
         if (num_read == -1)
+        {
+            printf("\n");
             return (-1);
-
-        printf("%lu, %s\n", num_read, lineptr); /***/
+        }
+        action = execve(lineptr, argv, envp);
+        if (action == -1)
+           printf("%s: %d: %s: not found\n", argv[0], argc, lineptr); /***/
         
         free(lineptr);
+        lineptr = NULL;
     }
 
     return (0);
