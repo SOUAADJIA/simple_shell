@@ -8,18 +8,18 @@
  */
 int main(int ac, char **av)
 {
-    char *prompt = "$ ", *delim = " ";
+    char *delim = " ";
     char *entry = NULL;
-    size_t n = 0;
     ssize_t n_read;
+    size_t n = 0;
     int i;
 
     (void) ac;
 
     while (1)
     {
-        printf("%s", prompt);
-        n_read = getline(&entry, &n, stdin);
+        print_prompt("$ ");
+        n_read = read_command(&entry, &n);
          /* detecting EOF */
         if (n_read == -1)
         {
