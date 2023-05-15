@@ -3,12 +3,9 @@
 
 void exec_fun(char **argv)
 {
-	char *our_command;
+	int action;
 
-	if (argv != NULL)
-	{
-		our_command = argv[0];
-		if (execve(our_command , argv, NULL) == -1)
-			perror("Not found");
-	}
+	action = execve(argv[0], argv, NULL);
+	if (action == -1)
+		printf("./shell: No such file or directory\n");
 }
