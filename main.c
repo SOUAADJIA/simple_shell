@@ -20,8 +20,14 @@ int main(int ac, char **av)
     {
         print_prompt("$ ");
         n_read = read_command(&entry, &n);
+        if (n_read == 1)
+        {
+            free(entry);
+            entry = NULL;
+            continue;
+        }
          /* detecting EOF */
-        if (n_read == -1)
+        else if (n_read == -1)
         {
             printf("\n\nDisconnected...\n");
             return (0);
