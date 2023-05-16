@@ -13,7 +13,7 @@ char *build_path(char *command)
     {
         if (strncmp(*env, "PATH=", 5) == 0) 
 	{
-            path_command = *env + 5;/*point after the PATH= */
+            path_command = *env + 5;/*check after the PATH= */
             path_command_copy = strdup(path_command);
             command_len = strlen(command);
 
