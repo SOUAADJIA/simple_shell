@@ -6,10 +6,12 @@
 #include <string.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <sys/stat.h>
 
 void print_prompt(char *prompt);
 ssize_t read_command(char **entry, size_t *n);
 char **parsing_entry(char *entry, char *delim);
 void exec_fun(char **argv);
+char *build_path(char *command);
 
 #endif
