@@ -21,7 +21,7 @@ char *build_path(char *command)
             /* Get the length of the directory*/
             directory_len = strlen(path_token);
             /* allocate memory to store the command name + the directory name */
-            file_path = malloc(command_len + directory_len + 2); /*  2 for / and \0 */
+            file_path = malloc(sizeof(char) * (command_len + directory_len + 2)); /*  2 for / and \0 */
             /* path= = copy the directory path + concatenate the command  */
             strcpy(file_path, path_token);
             strcat(file_path, "/");
