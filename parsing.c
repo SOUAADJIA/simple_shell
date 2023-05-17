@@ -43,6 +43,9 @@ char **parsing_entry(char *entry, char *delim)
     av[i] = NULL;
     free(token);
     free(entry_copy);
+    
+    is_env(av);
+    is_exit(av[0]);
 
     return (av);
 }

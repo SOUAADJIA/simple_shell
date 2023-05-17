@@ -9,6 +9,9 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+/* Envirmont Variable */
+extern char **environ;
+
 /* prompt.c */
 void print_prompt();
 ssize_t read_command(char **entry, size_t *n);
@@ -22,5 +25,9 @@ void exec_fun(char **argv);
 
 /* build_path.c */
 char *build_path(char *command);
+
+/* built_in.c */
+void is_exit(char *token);
+void is_env(char **argv);
 
 #endif

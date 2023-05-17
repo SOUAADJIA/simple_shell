@@ -1,7 +1,5 @@
 #include "main.h"
 
-extern char **environ;
-
 char *build_path(char *command) 
 {
     char *path_command, *path_command_copy, *path_token, *file_path;

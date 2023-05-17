@@ -23,7 +23,7 @@ void exec_fun(char **argv)
             {
                 action = execve(updated_command, argv, NULL);
                 if (action == -1)
-                    perror("./shell: No such file or directory\n");
+                    perror("./shell");
                 exit(EXIT_FAILURE); /*Child process exits after execution or on failure*/
             }
             else
@@ -35,7 +35,7 @@ void exec_fun(char **argv)
         }
         else
         {
-            perror("./shell: No such file or directory\n");
+            perror("./shell");
         }
     }
 }
