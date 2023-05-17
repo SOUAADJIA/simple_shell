@@ -10,7 +10,7 @@
 #include <sys/wait.h>
 
 /* prompt.c */
-void print_prompt(char *prompt);
+void print_prompt();
 ssize_t read_command(char **entry, size_t *n);
 
 /* parsing.c */

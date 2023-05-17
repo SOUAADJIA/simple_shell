@@ -1,8 +1,8 @@
 #include "main.h"
 
-void print_prompt(char *prompt)
+void print_prompt()
 {
-    printf("%s", prompt);
+    write(1, "$ ", 2);
 }
 
 ssize_t read_command(char **entry, size_t *n)
