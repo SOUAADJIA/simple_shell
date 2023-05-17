@@ -29,7 +29,7 @@ int main(int ac, char **av)
          /* detecting EOF */
         else if (n_read == -1)
         {
-            printf("\n\nDisconnected...\n");
+            write(1, "\n\nDisconnected...\n", 18);
             return (0);
         }
         else

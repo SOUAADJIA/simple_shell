@@ -27,6 +27,11 @@ char *build_path(char *command)
                 directory_len = strlen(path_token);
                 /* Allocate memory to store the command name + the directory name */
                 file_path = malloc(sizeof(char) * (command_len + directory_len + 2)); /*  2 for / and \0 */
+                if (!file_path)
+                {    
+                    perror("./shell");
+                    return (NULL);
+                }
                 /* Copy the directory path + concatenate the command */
                 strcpy(file_path, path_token);
                 strcat(file_path, "/");
@@ -51,9 +56,9 @@ char *build_path(char *command)
                 return command;
             }
 
-            return NULL;
+            return (NULL);
         }
     }
 
-    return NULL;
+    return (NULL);
 }

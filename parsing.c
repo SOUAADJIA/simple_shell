@@ -11,8 +11,8 @@ char **parsing_entry(char *entry, char *delim)
     entry_copy = malloc(sizeof(char) * (strlen(entry) + 1));
     if (!entry_copy)
     {
-        perror("hsh: memory allocation error");
-        exit(EXIT_FAILURE);
+        perror("./shell");
+        return (NULL);
     }
     strcpy(entry_copy, entry);
 
@@ -28,8 +28,8 @@ char **parsing_entry(char *entry, char *delim)
     av = malloc(sizeof(char *) * (n_tokens + 1));
     if (!av)
     {
-        perror("hsh: memory allocation error");
-        exit(EXIT_FAILURE);
+        perror("./shell");
+        return (NULL);
     }
     token = strtok(entry_copy, delim);
 

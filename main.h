@@ -9,10 +9,18 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 
+/* prompt.c */
 void print_prompt(char *prompt);
 ssize_t read_command(char **entry, size_t *n);
+
+/* parsing.c */
 char **parsing_entry(char *entry, char *delim);
+
+/* exec_fun.c */
 void exec_fun(char **argv);
+//we might need a forking function here
+
+/* build_path.c */
 char *build_path(char *command);
 
 #endif

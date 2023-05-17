@@ -29,13 +29,13 @@ void exec_fun(char **argv)
             else
             {
                 int status;
-                
+
                 waitpid(child_pid, &status, 0); /* Parent process waits for the child to finish*/
             }
         }
         else
         {
-            printf("Command '%s' does not exist.\n", command);
+            perror("./shell: No such file or directory\n");
         }
     }
 }
