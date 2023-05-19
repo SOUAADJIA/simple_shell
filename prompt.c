@@ -2,14 +2,15 @@
 
 void print_prompt()
 {
-    write(1, "$ ", 2);
+    if (isatty(STDIN_FILENO))
+        write(STDOUT_FILENO, "$ ", 2);
 }
 
 ssize_t read_command(char **entry, size_t *n)
 {
     ssize_t n_read;
 
-    n_read = getline(entry, n, stdin);
+    n_read = _getline(entry, n, stdin);
 
     return (n_read);
 }

@@ -8,7 +8,7 @@
  */
 int main(int ac, char **av)
 {
-    char *delim = " ";
+    char *delim = " \t\n";
     char *entry = NULL;
     ssize_t n_read;
     size_t n = 0;
@@ -25,12 +25,6 @@ int main(int ac, char **av)
             free(entry);
             entry = NULL;
             continue;
-        }
-         /* detecting EOF */
-        else if (n_read == -1)
-        {
-            write(1, "\n\nDisconnected...\n", 18);
-            return (0);
         }
         else
         {

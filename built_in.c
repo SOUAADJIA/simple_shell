@@ -16,8 +16,8 @@ void is_env(char **argv)
     {
         for (env_var = environ; *env_var != NULL; env_var++)
         {
-            write(1, *env_var, strlen(*env_var));
-            write(1, "\n", 1);
+            write(STDOUT_FILENO, *env_var, strlen(*env_var));
+            write(STDOUT_FILENO, "\n", 1);
         }
     }
 }

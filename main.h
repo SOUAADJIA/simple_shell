@@ -30,4 +30,7 @@ char *build_path(char *command);
 void is_exit(char *token);
 void is_env(char **argv);
 
+/* custom_func.c */
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
+
 #endif
