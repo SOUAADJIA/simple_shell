@@ -3,7 +3,10 @@
 void print_prompt()
 {
     if (isatty(STDIN_FILENO))
+    {
         write(STDOUT_FILENO, "$ ", 2);
+        fflush(stdout);
+    }
 }
 
 ssize_t read_command(char **entry, size_t *n)

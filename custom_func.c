@@ -6,23 +6,25 @@
 
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
-    static ssize_t n_read; /* STATIC ??*/
+    static ssize_t n_read = 0;
     static char buff[BUFFER_SIZE];
     ssize_t i;
 
-    n_read = read(fileno(stream), buff, BUFFER_SIZE);
-
-    /* detecting EOF */
     if (n_read == 0)
     {
-        write(STDOUT_FILENO, "\n", 1);
-        exit(EXIT_SUCCESS);
-    }
+        n_read = read(fileno(stream), buff, BUFFER_SIZE);
 
-    if (n_read == -1)
-    {
-        perror("./shell");
-        exit(EXIT_FAILURE);
+        /* detecting EOF */
+        if (n_read == 0)
+        {
+            write(STDOUT_FILENO, "\n", 1);
+            exit(EXIT_SUCCESS);
+        }
+        if (n_read == -1)
+        {
+            perror("./shell");
+            exit(EXIT_FAILURE);
+        }
     }
 
     if (!*lineptr || (*n == 0))
@@ -36,5 +38,6 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
     for (i = 0; i < n_read; i++)
         (*lineptr)[i] = buff[i];
 
-    return (n_read);
+    n_read = 0;
+    return (i);
 }
