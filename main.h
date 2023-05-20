@@ -21,7 +21,7 @@ ssize_t read_command(char **entry, size_t *n);
 char **parsing_entry(char *entry, char *delim);
 
 /* exec_fun.c */
-void exec_fun(char **argv, int *exit_status);
+void exec_fun(char **argv);
 
 /* build_path.c */
 char *build_path(char *command);
