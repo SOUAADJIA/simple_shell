@@ -18,7 +18,7 @@ void is_exit(char *token, char *status)
             length = strlen(status);
             for (i = 0; i < length; i++)
             {
-                if (!isdigit(status[i]))
+                if (!_isdigit(status[i]))
                 {
                     perror("./shell");
                     return;

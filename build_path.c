@@ -30,10 +30,10 @@ char *build_path(char *command)
                     return (NULL);
                 }
                 /* Copy the directory path + concatenate the command */
-                strcpy(file_path, path_token);
-                strcat(file_path, "/");
-                strcat(file_path, command);
-                strcat(file_path, "\0");
+                _strcpy(file_path, path_token);
+                _strcat(file_path, "/");
+                _strcat(file_path, command);
+                _strcat(file_path, "\0");
 
                 /* Check if this file path actually exists */
                 if (stat(file_path, &buffer) == 0)

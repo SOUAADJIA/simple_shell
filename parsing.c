@@ -14,7 +14,7 @@ char **parsing_entry(char *entry, char *delim)
         perror("./shell");
         return (NULL);
     }
-    strcpy(entry_copy, entry);
+    _strcpy(entry_copy, entry);
 
     /* counting number of tokens in entry */
     token = strtok(entry, delim);
@@ -36,7 +36,7 @@ char **parsing_entry(char *entry, char *delim)
     for (i = 0; token != NULL; i++)
     {
         av[i] = malloc(sizeof(char) * strlen(token));
-        strcpy(av[i], token);
+        _strcpy(av[i], token);
 
         token = strtok(NULL, delim);
     }

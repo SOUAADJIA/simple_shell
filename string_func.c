@@ -13,7 +13,8 @@ char *_strchr(char *s, char c)
 {
 
 	while (*s != '\0' && *s != c)
-	{		s++;
+	{
+		s++;
 	}
 
 	if (*s == c)
@@ -41,25 +42,6 @@ int _isdigit(int c)
 }
 
 /**
- * _isdigit -  checks for a digit (0 through 9)
- *
- * @c: character to check
- *
- * Return: 1 if c is uppercase or 0 otherwise
- */
-
-int _isdigit(int c)
-{
-	if (c >= '0' && c <= '9')
-	{
-		return (1);
-	}
-	else
-	{
-		return (0);
-	}
-}
-/**
 * _strlen - returns the length of a string.
 *
 * @s: string.
@@ -80,9 +62,9 @@ int _strlen(char *s)
 }
 
 /**
-* *_strcpy - copies the string pointed by src.
-*@dest: pointer to the buffer in which the string is copied.
-*@src: string to be copied.
+* _strcpy - copies the string pointed by src.
+* @dest: pointer to the buffer in which the string is copied.
+* @src: string to be copied.
 *
 * Return: the pointer to dest.
 */
