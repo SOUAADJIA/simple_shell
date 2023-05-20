@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <ctype.h> /* isdigit */
 
 /* Envirmont Variable */
 extern char **environ;
@@ -20,13 +21,13 @@ ssize_t read_command(char **entry, size_t *n);
 char **parsing_entry(char *entry, char *delim);
 
 /* exec_fun.c */
-void exec_fun(char **argv);
+void exec_fun(char **argv, int *exit_status);
 
 /* build_path.c */
 char *build_path(char *command);
 
 /* built_in.c */
-int is_exit(char *token);
+void is_exit(char *token, char *status);
 void is_env(char **argv);
 
 /* custom_func.c */

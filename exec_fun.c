@@ -1,6 +1,6 @@
 #include "main.h"
 
-void exec_fun(char **argv)
+void exec_fun(char **argv, int *exit_status)
 {
     char *command = NULL, *updated_command = NULL;
     int action;
@@ -30,7 +30,15 @@ void exec_fun(char **argv)
             {
                 int status;
 
-                waitpid(child_pid, &status, 0); /* Parent process waits for the child to finish*/
+                wait(&status); /* Parent process waits for the child to finish*/
+                if (WIFEXITED(status))
+                {
+                    *exit_status = WEXITSTATUS(status);
+                }
+                else if (WIFSIGNALED(status))
+                {
+                    *exit_status = WTERMSIG(status) + 128;
+                }
             }
         }
         else

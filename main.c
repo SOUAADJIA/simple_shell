@@ -12,7 +12,7 @@ int main(int ac, char **av)
     char *entry = NULL;
     ssize_t n_read;
     size_t n = 0;
-    int i;
+    int *exit_status = NULL, i;
 
     (void) ac;
 
@@ -31,10 +31,8 @@ int main(int ac, char **av)
             entry[n_read - 1] = '\0'; /* remove the trailing newline character from the last token */
 
             av = parsing_entry(entry, delim); /* splitting entry into array of strings */
-	    
-	    is_exit(av[0]);
-	    
-	    exec_fun(av); /* executing the first token */
+
+	        exec_fun(av, exit_status); /* executing the first token */
 
             for (i = 0; av[i] != NULL; i++)
                 free(av[i]);

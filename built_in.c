@@ -1,22 +1,34 @@
 #include "main.h"
 
-int is_exit(char *token)
+void is_exit(char *token, char *status)
 {
-	char *status_arg;
-	int status;
+    int exit_arg;
+    size_t i, length;
+
     if (strcmp("exit", token) == 0)
     {
-        /*Check if an argument (status) is provided*/
-        status_arg = strtok(NULL, " ");
-        status = 0;
-
-        /* Convert the status argument to an integer*/
-        if (status_arg != NULL)
-            status = atoi(status_arg);
-
-        exit(status);
+        /* Check if an argument (status) is provided */
+        if (status == NULL)
+        {
+            exit(0); /* No status argument provided, exit with status 0 */
+        }
+        else
+        {
+            /* check if status argument contains only digits */
+            length = strlen(status);
+            for (i = 0; i < length; i++)
+            {
+                if (!isdigit(status[i]))
+                {
+                    perror("./shell");
+                    return;
+                }
+            }
+            /* Convert the status argument to an integer */
+            exit_arg = atoi(status);
+            exit(exit_arg);
+        }
     }
-    return (0);
 }
 
 void is_env(char **argv)
