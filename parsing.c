@@ -8,7 +8,7 @@ char **parsing_entry(char *entry, char *delim)
     int i;
 
     /* copy entry */
-    entry_copy = malloc(sizeof(char) * (strlen(entry) + 1));
+    entry_copy = malloc(sizeof(char) * (_strlen(entry) + 1));
     if (!entry_copy)
     {
         perror("./shell");
@@ -17,12 +17,12 @@ char **parsing_entry(char *entry, char *delim)
     _strcpy(entry_copy, entry);
 
     /* counting number of tokens in entry */
-    token = strtok(entry, delim);
+    token = _strtok(entry, delim);
     n_tokens = 0;
     while (token != NULL)
     {
         n_tokens++;
-        token = strtok(NULL, delim);
+        token = _strtok(NULL, delim);
     }
     /* copy tokens into the array of strings */
     av = malloc(sizeof(char *) * (n_tokens + 1));
@@ -31,14 +31,14 @@ char **parsing_entry(char *entry, char *delim)
         perror("./shell");
         return (NULL);
     }
-    token = strtok(entry_copy, delim);
+    token = _strtok(entry_copy, delim);
 
     for (i = 0; token != NULL; i++)
     {
-        av[i] = malloc(sizeof(char) * strlen(token));
+        av[i] = malloc(sizeof(char) * _strlen(token));
         _strcpy(av[i], token);
 
-        token = strtok(NULL, delim);
+        token = _strtok(NULL, delim);
     }
     av[i] = NULL;
     free(token);

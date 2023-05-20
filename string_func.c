@@ -18,7 +18,7 @@ char *_strchr(char *s, char c)
 	}
 
 	if (*s == c)
-		return  (s);
+		return (s);
 	return (NULL);
 }
 /**
@@ -118,4 +118,24 @@ char *_strcat(char *dest, char *src)
 
 	dest[lendest] = '\0';
 	return (dest);
+}
+/**
+ * _strdup - duplicate string
+ * @str: the string to duplicate 
+ * Return: pointer points to the newly allocated memory containing
+ * the duplicated string.
+ */
+
+char *_strdup(const char* str)
+{
+    size_t len = strlen(str) + 1;
+    char* new_str = malloc(len);
+
+    if (new_str == NULL)
+    {
+        return NULL;
+    }
+
+    strcpy(new_str, str);
+    return new_str;
 }

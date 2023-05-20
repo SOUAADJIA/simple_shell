@@ -12,16 +12,16 @@ char *build_path(char *command)
         if (strncmp(*env, "PATH=", 5) == 0)
         {
             path_command = *env + 5;/*check after the PATH= */
-            path_command_copy = strdup(path_command);
-            command_len = strlen(command);
+            path_command_copy = _strdup(path_command);
+            command_len = _strlen(command);
 
             /* break down the path variable and get all the directories */
-            path_token = strtok(path_command_copy, ":");
+            path_token = _strtok(path_command_copy, ":");
 
             while (path_token != NULL)
             {
                 /* Get the length of the directory */
-                directory_len = strlen(path_token);
+                directory_len = _strlen(path_token);
                 /* Allocate memory to store the command name + the directory name */
                 file_path = malloc(sizeof(char) * (command_len + directory_len + 2)); /*  2 for / and \0 */
                 if (!file_path)
