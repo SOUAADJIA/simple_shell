@@ -31,8 +31,10 @@ int main(int ac, char **av)
             entry[n_read - 1] = '\0'; /* remove the trailing newline character from the last token */
 
             av = parsing_entry(entry, delim); /* splitting entry into array of strings */
-
-            exec_fun(av); /* executing the first token */
+	    
+	    is_exit(av[0]);
+	    
+	    exec_fun(av); /* executing the first token */
 
             for (i = 0; av[i] != NULL; i++)
                 free(av[i]);
