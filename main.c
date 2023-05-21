@@ -1,10 +1,9 @@
 #include "main.h"
-
 /**
- * main - main function
- * @argc: length of argv
- * @argv: array of strings passed in the command-line
- * Return: Always 0 (Success) 
+ * main - Entry point of the program.
+ * @ac: The number of command-line arguments.
+ * @av: An array of strings containing the command-line arguments.
+ * Return: 0 on successful execution.
  */
 int main(int ac, char **av)
 {

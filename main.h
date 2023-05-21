@@ -8,7 +8,8 @@
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <sys/wait.h>
-#include <ctype.h> /* isdigit */
+
+#define BUFFER_SIZE 1024
 
 /* Envirmont Variable */
 extern char **environ;
@@ -36,11 +37,14 @@ char *_strtok(char* str, const char* delim);
 
 
 /* string_func.c */
-char *_strchr(char *s, char c);
 int _isdigit(int c);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
 char *_strdup(const char* str);
+int _strcmp(char *s1, char *s2);
+int _strncmp(const char *str1, const char *str2, size_t n);
+int _atoi(char *s);
+char *_strchr(const char *s, int c);
 
 #endif

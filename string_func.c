@@ -1,26 +1,51 @@
 #include "main.h"
+/**
+ * _strncmp - compare n bytes 
+ * @str1: Pointer to the first string
+ * @str2: Pointer to the second string
+ * @n: Maximum number of characters to compare
+ *
+ * Return: An integer less than, equal to, or greater than zero if str1 is
+ * found, respectively, to be less than, to match, or be greater than str2.
+ */
+int _strncmp(const char *str1, const char *str2, size_t n)
+{
+	size_t i;
+
+	for (i = 0; i < n; i++) 
+	{
+		if (str1[i] != str2[i])
+			return (str1[i] - str2[i]);
+		if (str1[i] == '\0')
+			return (0);
+	}
+	return (0);
+}
 
 /**
- * _strchr - function that locates a character in a string
+ * _strchr - Locate the first occurrence of a character in a string.
  *
- * @s: ponietr to string
- * @c: character to be located
+ * @s: The string to search in.
+ * @c: The character to locate.
  *
- * Return: a pointer to the first occurrence of the character c in
- * the string s, or NULL if the character is not found
+ * Return: A pointer to the first occurrence of the character in the string,
+ * or NULL if the character is not found.
  */
-char *_strchr(char *s, char c)
+char *_strchr(const char *s, int c)
 {
+    while (*s != '\0')
+    {
+        if (*s == c)
+            return ((char *)s);
+        s++;
+    }
 
-	while (*s != '\0' && *s != c)
-	{
-		s++;
-	}
+    if (*s == c)
+        return ((char *)s);
 
-	if (*s == c)
-		return (s);
-	return (NULL);
+    return (NULL);
 }
+
 /**
  * _isdigit -  checks for a digit (0 through 9)
  *
@@ -42,12 +67,12 @@ int _isdigit(int c)
 }
 
 /**
-* _strlen - returns the length of a string.
-*
-* @s: string.
-*
-* Return: length of string.
-*/
+ * _strlen - returns the length of a string.
+ *
+ * @s: string.
+ *
+ * Return: length of string.
+ */
 
 int _strlen(char *s)
 {
@@ -62,12 +87,12 @@ int _strlen(char *s)
 }
 
 /**
-* _strcpy - copies the string pointed by src.
-* @dest: pointer to the buffer in which the string is copied.
-* @src: string to be copied.
-*
-* Return: the pointer to dest.
-*/
+ * _strcpy - copies the string pointed by src.
+ * @dest: pointer to the buffer in which the string is copied.
+ * @src: string to be copied.
+ *
+ * Return: the pointer to dest.
+ */
 
 char *_strcpy(char *dest, char *src)
 {
@@ -128,16 +153,16 @@ char *_strcat(char *dest, char *src)
 
 char *_strdup(const char* str)
 {
-    size_t len = strlen(str) + 1;
-    char* new_str = malloc(len);
+	size_t len = strlen(str) + 1;
+	char* new_str = malloc(len);
 
-    if (new_str == NULL)
-    {
-        return NULL;
-    }
+	if (new_str == NULL)
+	{
+		return NULL;
+	}
 
-    strcpy(new_str, str);
-    return new_str;
+	strcpy(new_str, str);
+	return new_str;
 }
 /**
  * _strcmp - compare string values

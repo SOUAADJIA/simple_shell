@@ -1,5 +1,10 @@
 #include "main.h"
-
+/**
+ * build_path - Builds the full path of a command by searching through
+ * the directories listed in the PATH environment variable.
+ * @command: The command to find the full path for.
+ * Return: The full path of the command if found, or NULL if not found.
+ */
 char *build_path(char *command) 
 {
     char *path_command, *path_command_copy, *path_token, *file_path;
@@ -9,14 +14,14 @@ char *build_path(char *command)
 
     for (env = environ; *env != NULL; env++) 
     {
-        if (strncmp(*env, "PATH=", 5) == 0)
+        if (_strncmp(*env, "PATH=", 5) == 0)
         {
             path_command = *env + 5;/*check after the PATH= */
             path_command_copy = _strdup(path_command);
             command_len = _strlen(command);
 
             /* break down the path variable and get all the directories */
-            path_token = strtok(path_command_copy, ":");
+            path_token = _strtok(path_command_copy, ":");
 
             while (path_token != NULL)
             {
@@ -44,7 +49,7 @@ char *build_path(char *command)
                 else
                 {
                     free(file_path);
-                    path_token = strtok(NULL, ":");
+                    path_token = _strtok(NULL, ":");
                 }
             }
 
