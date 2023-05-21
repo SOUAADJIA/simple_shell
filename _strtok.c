@@ -1,8 +1,8 @@
 #include "main.h"
 
-char *_strtok(char* str, const char* delim)
+char *_strtok(char *str, const char *delim)
 {
-    static char* buffer = NULL;
+    static char *buffer = NULL;
     char *token_start;
 
     if (str != NULL)

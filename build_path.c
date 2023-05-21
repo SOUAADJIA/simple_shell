@@ -16,7 +16,7 @@ char *build_path(char *command)
             command_len = _strlen(command);
 
             /* break down the path variable and get all the directories */
-            path_token = _strtok(path_command_copy, ":");
+            path_token = strtok(path_command_copy, ":");
 
             while (path_token != NULL)
             {

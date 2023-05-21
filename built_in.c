@@ -15,7 +15,7 @@ void is_exit(char *token, char *status)
         else
         {
             /* check if status argument contains only digits */
-            length = strlen(status);
+            length = _strlen(status);
             for (i = 0; i < length; i++)
             {
                 if (!_isdigit(status[i]))
@@ -39,7 +39,7 @@ void is_env(char **argv)
     {
         for (env_var = environ; *env_var != NULL; env_var++)
         {
-            write(STDOUT_FILENO, *env_var, strlen(*env_var));
+            write(STDOUT_FILENO, *env_var, _strlen(*env_var));
             write(STDOUT_FILENO, "\n", 1);
         }
     }
