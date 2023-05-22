@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * _strncmp - compare n bytes 
+ * _strncmp - compare n bytes
  * @str1: Pointer to the first string
  * @str2: Pointer to the second string
  * @n: Maximum number of characters to compare
@@ -12,7 +12,7 @@ int _strncmp(const char *str1, const char *str2, size_t n)
 {
 	size_t i;
 
-	for (i = 0; i < n; i++) 
+	for (i = 0; i < n; i++)
 	{
 		if (str1[i] != str2[i])
 			return (str1[i] - str2[i]);
@@ -33,17 +33,17 @@ int _strncmp(const char *str1, const char *str2, size_t n)
  */
 char *_strchr(const char *s, int c)
 {
-    while (*s != '\0')
-    {
-        if (*s == c)
-            return ((char *)s);
-        s++;
-    }
+	while (*s != '\0')
+	{
+		if (*s == c)
+			return ((char *)s);
+		s++;
+	}
 
-    if (*s == c)
-        return ((char *)s);
+	if (*s == c)
+		return ((char *)s);
 
-    return (NULL);
+	return (NULL);
 }
 
 /**
@@ -68,23 +68,23 @@ int _isdigit(int c)
 
 /**
  * _strdup - duplicate string
- * @str: the string to duplicate 
+ * @str: the string to duplicate
  * Return: pointer points to the newly allocated memory containing
  * the duplicated string.
  */
 
-char *_strdup(const char* str)
+char *_strdup(const char *str)
 {
 	size_t len = strlen(str) + 1;
-	char* new_str = malloc(len);
+	char *new_str = malloc(len);
 
 	if (new_str == NULL)
 	{
-		return NULL;
+		return (NULL);
 	}
 
 	strcpy(new_str, str);
-	return new_str;
+	return (new_str);
 }
 
 /**
