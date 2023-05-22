@@ -4,7 +4,7 @@
  *
  * Return: void
  */
-void print_prompt()
+void print_prompt(void)
 {
     if (isatty(STDIN_FILENO))
     {

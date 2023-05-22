@@ -15,7 +15,7 @@
 extern char **environ;
 
 /* prompt.c */
-void print_prompt();
+void print_prompt(void);
 ssize_t read_command(char **entry, size_t *n);
 
 /* parsing.c */
@@ -33,7 +33,7 @@ void is_env(char **argv);
 
 /* custom_func.c */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
-char *_strtok(char* str, const char* delim);
+char *_strtok(char *str, const char *delim);
 
 
 /* string_func.c */
@@ -41,7 +41,7 @@ int _isdigit(int c);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
-char *_strdup(const char* str);
+char *_strdup(const char *str);
 int _strcmp(char *s1, char *s2);
 int _strncmp(const char *str1, const char *str2, size_t n);
 int _atoi(char *s);
