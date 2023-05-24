@@ -12,18 +12,16 @@ int main(__attribute__((unused)) int ac, char **av)
 	ssize_t n_read;
 	size_t n = 0;
 	int i;
-	int interactive = isatty(STDIN_FILENO); /* Check if in interactive mode */
 
 	while (1)
 	{
-		print_prompt(interactive);
-		n_read = read_command(&entry, &n, interactive);
+		print_prompt();
+		n_read = read_command(&entry, &n);
 		if (n_read <= 0)
 		{
 			if (n_read == -1)
 			{
-				perror("./shell");
-				exit(EXIT_FAILURE);
+				exit(EXIT_SUCCESS);
 			}
 			continue;
 		}

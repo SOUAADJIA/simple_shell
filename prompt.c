@@ -2,14 +2,11 @@
 
 /**
  * print_prompt - Print the shell prompt if running in interactive mode.
- *
- * @interactive: Flag indicating whether the shell is in interactive mode.
- *
  * Return: void
  */
-void print_prompt(int interactive)
+void print_prompt(void)
 {
-	if (interactive && isatty(STDIN_FILENO))
+	if (isatty(STDIN_FILENO))
 	{
 		write(STDOUT_FILENO, "$ ", 2);
 		fflush(stdout);
@@ -21,15 +18,14 @@ void print_prompt(int interactive)
  *
  * @entry: Pointer to the buffer storing the read command.
  * @n: Pointer to the size of the buffer.
- * @interactive: Flag indicating whether the shell is in interactive mode.
  *
  * Return: The number of bytes read, or -1 on failure.
  */
-ssize_t read_command(char **entry, size_t *n, int interactive)
+ssize_t read_command(char **entry, size_t *n)
 {
 	ssize_t n_read;
 
-	n_read = _getline(entry, n, stdin, interactive);
+	n_read = _getline(entry, n, stdin);
 
 	return (n_read);
 }
@@ -39,10 +35,9 @@ ssize_t read_command(char **entry, size_t *n, int interactive)
  * @lineptr: Pointer to the buffer storing the read line.
  * @n: Pointer to the size of the buffer.
  * @stream: The stream to read from.
- * @interactive: Flag indicating whether the shell is in interactive mode.
  * Return: The number of bytes read, or -1 on failure.
  */
-ssize_t _getline(char **lineptr, size_t *n, FILE *stream, int interactive)
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream)
 {
 	static ssize_t n_read;
 	static char buff[BUFFER_SIZE];
@@ -53,14 +48,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream, int interactive)
 		n_read = read(fileno(stream), buff, BUFFER_SIZE);
 		if (n_read == 0) /* Detecting EOF */
 		{
-			if (interactive)
-				write(STDOUT_FILENO, "\n", 1);
-			return (0);
-		}
-		if (n_read == -1)
-		{
-			perror("./shell");
-			exit(EXIT_FAILURE);
+			return (-1); /* Indicate EOF */
 		}
 	}
 	if (!*lineptr || (*n == 0))

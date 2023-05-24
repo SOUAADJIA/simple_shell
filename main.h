@@ -17,8 +17,8 @@ extern char **environ;
 int is_empty_input(char *entry);
 
 /* prompt.c */
-void print_prompt(int interactive);
-ssize_t read_command(char **entry, size_t *n, int interactive);
+void print_prompt(void);
+ssize_t read_command(char **entry, size_t *n);
 
 /* parsing.c */
 char **parsing_entry(char *entry, char *delim);
@@ -52,7 +52,7 @@ void change_directory(const char *path);
 
 
 /* custom_func.c */
-ssize_t _getline(char **lineptr, size_t *n, FILE *stream, int interactive);
+ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 char *_strtok(char *str, const char *delim);
 
 
