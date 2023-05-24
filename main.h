@@ -13,6 +13,8 @@
 
 /* Environment Variable */
 extern char **environ;
+/*empty command*/
+int is_empty_input(char *entry);
 
 /* prompt.c */
 void print_prompt(int interactive);

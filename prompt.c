@@ -36,12 +36,10 @@ ssize_t read_command(char **entry, size_t *n, int interactive)
 
 /**
  * _getline - Read a line from the specified stream.
- *
  * @lineptr: Pointer to the buffer storing the read line.
  * @n: Pointer to the size of the buffer.
  * @stream: The stream to read from.
  * @interactive: Flag indicating whether the shell is in interactive mode.
- *
  * Return: The number of bytes read, or -1 on failure.
  */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream, int interactive)
@@ -53,7 +51,7 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream, int interactive)
 	if (n_read <= 0) /* Check if there are no bytes left to read */
 	{
 		n_read = read(fileno(stream), buff, BUFFER_SIZE);
-		if (n_read == 0) /* detecting EOF */
+		if (n_read == 0) /* Detecting EOF */
 		{
 			if (interactive)
 				write(STDOUT_FILENO, "\n", 1);
@@ -78,4 +76,3 @@ ssize_t _getline(char **lineptr, size_t *n, FILE *stream, int interactive)
 	n_read = 0;
 	return (i);
 }
-
