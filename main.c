@@ -5,19 +5,19 @@
  * @av: An array of strings containing the command-line arguments.
  * Return: 0 on successful execution.
  */
-int main(int ac, char **av)
+int main(__attribute__((unused)) int ac, char **av)
 {
 	char *delim = " \t\n";
 	char *entry = NULL;
 	ssize_t n_read;
 	size_t n = 0;
 	int i;
-	(void) ac;
+	int interactive = isatty(STDIN_FILENO); /*Check if in inter mode*/
 
 	while (1)
 	{
-		print_prompt();
-		n_read = read_command(&entry, &n);
+		print_prompt(interactive);
+		n_read = read_command(&entry, &n, interactive);
 		if (n_read == 1)
 		{
 			free(entry);
@@ -28,7 +28,7 @@ int main(int ac, char **av)
 		{
 			entry[n_read - 1] = '\0';
 			av = parsing_entry(entry, delim);
-			exec_fun(av); /* executing the first token */
+			exec_fun(av);
 			for (i = 0; av[i] != NULL; i++)
 				free(av[i]);
 			free(av);
