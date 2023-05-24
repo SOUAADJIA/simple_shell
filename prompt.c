@@ -26,6 +26,11 @@ ssize_t read_command(char **entry, size_t *n)
 	ssize_t n_read;
 
 	n_read = _getline(entry, n, stdin);
+	if (n_read == EOF)
+	{
+		write(STDOUT_FILENO, "\n", 1);
+		exit(EXIT_SUCCESS);
+	}
 
 	return (n_read);
 }
