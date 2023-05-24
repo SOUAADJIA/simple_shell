@@ -6,11 +6,11 @@
  */
 void print_prompt(void)
 {
-    if (isatty(STDIN_FILENO))
-    {
-        write(STDOUT_FILENO, "$ ", 2);
-        fflush(stdout);
-    }
+	if (isatty(STDIN_FILENO))
+	{
+		write(STDOUT_FILENO, "$ ", 2);
+		fflush(stdout);
+	}
 }
 /**
  * read_command - Read a command from the standard input.
@@ -22,9 +22,9 @@ void print_prompt(void)
  */
 ssize_t read_command(char **entry, size_t *n)
 {
-    ssize_t n_read;
+	ssize_t n_read;
 
-    n_read = _getline(entry, n, stdin);
+	n_read = _getline(entry, n, stdin);
 
-    return (n_read);
+	return (n_read);
 }

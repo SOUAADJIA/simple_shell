@@ -54,3 +54,39 @@ void is_env(char **argv)
 		}
 	}
 }
+/**
+ * change_directory - Change the current working directory.
+ *
+ * @path: The path of the directory to change to.
+ *
+ * This function changes the current working directory to the specified path.
+ * It also updates the PWD environment variable with the new working directory.
+ * If an error occurs during the process, an error message is printed.
+ */
+void change_directory(const char *path)
+{
+	char cwd[BUFFER_SIZE];
+
+	/* Get the current working directory */
+	if (getcwd(cwd, sizeof(cwd)) == NULL)
+	{
+		perror("cd: Failed to get current working directory");
+		return;
+	}
+
+	/* Update the PWD environment variable */
+	if (setenv("PWD", cwd, 1) != 0)
+	{
+		perror("cd: Failed to update PWD environment variable");
+		return;
+	}
+
+	/* Change the directory */
+	if (chdir(path) != 0)
+	{
+		perror("cd: Failed to change directory");
+		return;
+	}
+}
+
+

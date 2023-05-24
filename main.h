@@ -11,7 +11,7 @@
 
 #define BUFFER_SIZE 1024
 
-/* Envirmont Variable */
+/* Environment Variable */
 extern char **environ;
 
 /* prompt.c */
@@ -20,16 +20,34 @@ ssize_t read_command(char **entry, size_t *n);
 
 /* parsing.c */
 char **parsing_entry(char *entry, char *delim);
+char *copy_entry_string(char *entry);
+size_t count_tokens(char *entry, char *delim);
+char **allocate_token_array(size_t n_tokens);
+char *copy_token_string(char *token);
+
+char *tokenize_entry(char *entry, char *delim);
+void free_token_array(char **av, int size);
+/*Check if the command is a built-in command*/
+void check_builtin_command(char **av);
+void execute_env_command(char **av);
+void execute_exit_command(char *av);
+void execute_cd_command(char **av);
 
 /* exec_fun.c */
 void exec_fun(char **argv);
+int execute_command(const char *command, char **argv);
+void wait_for_child(pid_t child_pid);
 
 /* build_path.c */
 char *build_path(char *command);
+char *find_directory(char *path_command, char *command);
+char *build_file_path(char *directory, char *command);
 
 /* built_in.c */
 void is_exit(char *token, char *status);
 void is_env(char **argv);
+void change_directory(const char *path);
+
 
 /* custom_func.c */
 ssize_t _getline(char **lineptr, size_t *n, FILE *stream);

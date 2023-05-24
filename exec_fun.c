@@ -1,7 +1,8 @@
 #include "main.h"
+
 /**
  * exec_fun - Executes the specified command with the given arguments.
- * @argv : The arguments array containing the command and its arguments.
+ * @argv: The arguments array containing the command and its arguments.
  * Return: nothing
  */
 void exec_fun(char **argv)
@@ -13,7 +14,6 @@ void exec_fun(char **argv)
 	if (argv)
 	{
 		command = argv[0];
-		/* generate the path to this command before passing it to execve */
 		updated_command = build_path(command);
 		if (updated_command != NULL)
 		{
@@ -25,16 +25,12 @@ void exec_fun(char **argv)
 			}
 			else if (child_pid == 0)
 			{
-				action = execve(updated_command, argv, NULL);
-				if (action == -1)
-					perror("./shell");
-				exit(EXIT_FAILURE); /*Child process exits after execution or on failure*/
+				action = execute_command(updated_command, argv);
+				exit(action);
 			}
 			else
 			{
-				int status;
-
-				wait(&status); /* Parent process waits for the child to finish*/
+				wait_for_child(child_pid);
 			}
 		}
 		else
@@ -42,4 +38,34 @@ void exec_fun(char **argv)
 			perror("./shell");
 		}
 	}
+}
+
+/**
+ * execute_command - Executes the command with the given arguments .
+ * @command: The command to execute.
+ * @argv: The arguments array.
+ * Return: 0 on success, -1 on failure.
+ */
+int execute_command(const char *command, char **argv)
+{
+	int action;
+
+	action = execve(command, argv, NULL);
+	if (action == -1)
+		perror("./shell");
+
+	return (action);
+}
+
+/**
+ * wait_for_child - Waits for the specified child process to finish.
+ * @child_pid: The PID of the child process.
+ * Return: nothing
+ */
+void wait_for_child(pid_t child_pid)
+{
+	int status;
+	(void)child_pid;
+
+	wait(&status);
 }
