@@ -18,7 +18,18 @@ int is_empty_input(char *entry);
 
 /* prompt.c */
 void print_prompt(void);
-ssize_t read_command(char **entry, size_t *n);
+ssize_t read_command(char **entry, ssize_t *n);
+ssize_t _getline(char **lineptr, ssize_t *n, FILE *stream);
+int should_refill_buffer(ssize_t *n_read, ssize_t pos);
+
+/* getlin_tools.c */
+ssize_t find_line_length(char *buff, ssize_t n_read, ssize_t pos);
+int should_resize_buffer(char **lineptr, ssize_t n, ssize_t line_len);
+ssize_t resize_buffer(char **lineptr, ssize_t *n, ssize_t line_len);
+void copy_line_to_buffer(char **lineptr, char *buff, ssize_t pos,
+ssize_t line_len);
+ssize_t refill_buffer(ssize_t *n_read, char *buff, FILE *stream);
+
 
 /* parsing.c */
 char **parsing_entry(char *entry, char *delim);
@@ -52,9 +63,7 @@ void change_directory(const char *path);
 
 
 /* custom_func.c */
-ssize_t _getline(char **lineptr, size_t *n, FILE *stream);
 char *_strtok(char *str, const char *delim);
-
 
 /* string_func.c */
 int _isdigit(int c);

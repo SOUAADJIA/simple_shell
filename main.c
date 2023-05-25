@@ -10,7 +10,7 @@ int main(__attribute__((unused)) int ac, char **av)
 	char *delim = " \t\n";
 	char *entry = NULL;
 	ssize_t n_read;
-	size_t n = 0;
+	ssize_t n = 0;
 	int i;
 
 	while (1)
