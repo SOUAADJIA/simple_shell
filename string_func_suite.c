@@ -73,9 +73,9 @@ int _isdigit(int c)
  * the duplicated string.
  */
 
-char *_strdup(const char *str)
+char *_strdup(char *str)
 {
-	size_t len = strlen(str) + 1;
+	size_t len = _strlen(str) + 1;
 	char *new_str = malloc(len);
 
 	if (new_str == NULL)
@@ -104,9 +104,7 @@ int _atoi(char *s)
 	while (s[c])
 	{
 		if (s[c] == '-')
-		{
 			min *= -1;
-		}
 
 		while (s[c] >= '0' && s[c] <= '9')
 		{

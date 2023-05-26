@@ -25,7 +25,7 @@ void is_exit(char *token, char *status)
 			{
 				if (!_isdigit(status[i]))
 				{
-					perror("./shell");
+					illegal_status(token, 1);
 					return;
 				}
 			}
@@ -43,13 +43,16 @@ void is_exit(char *token, char *status)
 
 void is_env(char **argv)
 {
-	char **env_var;
+	int index;
 
 	if ((_strcmp("env", argv[0]) == 0) && (argv[1] == NULL))
 	{
-		for (env_var = environ; *env_var != NULL; env_var++)
+		if (!environ)
+			return;
+
+		for (index = 0; environ[index]; index++)
 		{
-			write(STDOUT_FILENO, *env_var, _strlen(*env_var));
+			write(STDOUT_FILENO, environ[index], _strlen(environ[index]));
 			write(STDOUT_FILENO, "\n", 1);
 		}
 	}

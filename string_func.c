@@ -100,3 +100,58 @@ int _strcmp(char *s1, char *s2)
 	}
 	return (0);
 }
+
+/**
+ * int_convert_string - Convert an integer to a string.
+ * @number: The integer to convert.
+ *
+ * Return: The string representation of the integer, or NULL if failed.
+ */
+char *int_convert_string(int number)
+{
+	int num_digits, place_value, index = 0, is_negative = 0, x;
+	char *result;
+
+	num_digits = number;
+	place_value = 1;
+
+	if (number < 0)
+		is_negative = 1;
+
+	result = malloc(sizeof(char) * (abs(num_digits) + 2 + is_negative));
+	if (result == NULL)
+		return (NULL);
+
+	if (is_negative)
+	{
+		result[index] = '-';
+		index++;
+	}
+
+	for (x = 0; num_digits > 9 || num_digits < -9; x++)
+	{
+		num_digits /= 10;
+		place_value *= 10;
+	}
+
+	num_digits = number;
+	for (; x >= 0; x--)
+	{
+		if (num_digits < 0)
+		{
+			result[index] = (num_digits / place_value) * -1 + '0';
+			index++;
+		}
+		else
+		{
+			result[index] = (num_digits / place_value) + '0';
+			index++;
+		}
+		num_digits %= place_value;
+		place_value /= 10;
+	}
+
+	result[index] = '\0';
+
+	return (result);
+}

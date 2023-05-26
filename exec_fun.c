@@ -25,18 +25,19 @@ void exec_fun(char **argv)
 			}
 			else if (child_pid == 0)
 			{
+				check_builtin_command(argv);
 				action = execute_command(updated_command, argv);
 				exit(action);
 			}
 			else
 			{
 				wait_for_child(child_pid);
+				if (isatty(STDIN_FILENO))
+					free(updated_command);
 			}
 		}
 		else
-		{
-			perror("./shell");
-		}
+			not_found(argv[0], 1);
 	}
 }
 

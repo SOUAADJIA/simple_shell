@@ -24,7 +24,6 @@ char *find_directory(char *path_command, char *command)
 
 		path_token = _strtok(NULL, ":");
 	}
-
 	free(path_command_copy);
 
 	return (NULL);

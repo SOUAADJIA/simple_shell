@@ -61,6 +61,8 @@ void is_exit(char *token, char *status);
 void is_env(char **argv);
 void change_directory(const char *path);
 
+/* _getenv.c */
+char *_getenv(const char *name);
 
 /* custom_func.c */
 char *_strtok(char *str, const char *delim);
@@ -70,10 +72,15 @@ int _isdigit(int c);
 int _strlen(char *s);
 char *_strcpy(char *dest, char *src);
 char *_strcat(char *dest, char *src);
-char *_strdup(const char *str);
+char *_strdup(char *str);
 int _strcmp(char *s1, char *s2);
 int _strncmp(const char *str1, const char *str2, size_t n);
 int _atoi(char *s);
 char *_strchr(const char *s, int c);
+char *int_convert_string(int number);
+
+/* error_msg.c */
+void not_found(char *argv, int command_num);
+void illegal_status(char *argv, int command_num);
 
 #endif

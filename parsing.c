@@ -36,7 +36,6 @@ char **parsing_entry(char *entry, char *delim)
 	}
 	av[i] = NULL;
 	free(entry_copy);
-	check_builtin_command(av);
 	return (av);
 }
 
