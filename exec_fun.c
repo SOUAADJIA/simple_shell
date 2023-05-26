@@ -25,7 +25,6 @@ void exec_fun(char **argv)
 			}
 			else if (child_pid == 0)
 			{
-				check_builtin_command(argv);
 				action = execute_command(updated_command, argv);
 				exit(action);
 			}

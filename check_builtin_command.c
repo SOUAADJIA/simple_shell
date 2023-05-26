@@ -30,7 +30,10 @@ void execute_env_command(char **av)
  */
 void execute_exit_command(char *av)
 {
-	is_exit("exit", av);
+	if (av == NULL)
+		is_exit("exit", NULL);
+	else
+		is_exit("exit", av);
 }
 /**
  * execute_cd_command - Execute the "cd" built-in command.

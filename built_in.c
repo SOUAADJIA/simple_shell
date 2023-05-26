@@ -23,7 +23,7 @@ void is_exit(char *token, char *status)
 			length = _strlen(status);
 			for (i = 0; i < length; i++)
 			{
-				if (!_isdigit(status[i]))
+				if (! _isdigit(status[i]))
 				{
 					illegal_status(token, 1);
 					return;
